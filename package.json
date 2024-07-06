@@ -1,0 +1,26 @@
+{
+  "name": "messagebroker",
+  "version": "1.0.0",
+  "description": "Broker messages between local clients using websockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tgifford-usc/MessageBroker.git"
+  },
+  "keywords": [
+    "websockets"
+  ],
+  "author": "tgifford-usc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tgifford-usc/MessageBroker/issues"
+  },
+  "homepage": "https://github.com/tgifford-usc/MessageBroker#readme",
+  "type": "module",
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}
