@@ -1,13 +1,23 @@
+import { createServer } from 'https';
+import { readFileSync } from 'fs';
 import { WebSocketServer } from 'ws';
 
-let OpenPorts = new Map();
+const server = createServer({
+  cert: readFileSync('/etc/letsencrypt/live/des221.net/fullchain.pem'),
+  key: readFileSync('/etc/letsencrypt/live/des221.net/privkey.pem')
+});
+const wss = new WebSocketServer({ server });
 
-const wss = new WebSocketServer({ port: 8080 });
+wss.on('connection', function connection(ws, req) {
+  ws.on('error', console.error);
 
-wss.on('connection', function connection(ws) {
   ws.on('message', function message(data) {
     console.log('received: %s', data);
   });
-
-  ws.send('This is DES221 speaking');
+  
+  const ip = req.socket.remoteAddress;
+  console.log(`Connection from ${ip}`);
+  ws.send(`Connected to ${ip}`);
 });
+
+server.listen(8080);
